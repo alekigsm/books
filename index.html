@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Библиотека книг</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="library-app">
+      <h1>Библиотека книг</h1>
+
+      <!-- Форма для добавления книги -->
+      <div id="book-form">
+        <h2>Добавить книгу</h2>
+        <input type="text" id="title-input" placeholder="Название книги" />
+        <input type="text" id="author-input" placeholder="Автор книги" />
+        <input type="number" id="year-input" placeholder="Год издания" />
+        <button id="add-book-btn">Добавить книгу</button>
+      </div>
+
+      <!-- Список книг -->
+      <div id="book-list">
+        <h2>Список книг</h2>
+        <ul id="books-list"></ul>
+      </div>
+
+      <!-- Удаление книги -->
+      <div id="remove-book">
+        <h2>Удалить книгу</h2>
+        <input
+          type="text"
+          id="remove-title-input"
+          placeholder="Название книги"
+        />
+        <button id="remove-book-btn">Удалить книгу</button>
+      </div>
+
+      <!-- Шаблон для одной книги -->
+      <template id="book-template">
+        <li class="book-item">
+          <span class="book-info"></span>
+          <button class="remove-book-button">Удалить</button>
+        </li>
+      </template>
+    </div>
+  </body>
+</html>
