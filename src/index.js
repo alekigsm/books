@@ -1,5 +1,5 @@
-import { Book } from "./Book";
-import { Liberty } from "./Library";
+import { Book } from "./Book.js";
+import { Library } from './Library.js';
 
 /* Интерфейс пользователя:
 Кнопка "Добавить книгу" должна создавать объект класса Book и добавлять его в библиотеку.
@@ -20,3 +20,9 @@ const removeTitleInput = document.getElementById('remove-title-input');
 const removeBookBtn = document.getElementById('remove-book-btn');
 const booksList = document.getElementById('books-list');
 const bookTemplate = document.getElementById('book-template');
+
+
+addBookBtn.addEventListener('click', () => {
+    const title = titleInput.value
+    console.log(`title, ${title}`)
+});

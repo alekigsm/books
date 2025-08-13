@@ -1,24 +1,15 @@
-import { Book } from "./Book"
-
-export class Liberty {
-    protected books: Book[]
-
+export class Library {
     constructor() {
         this.books = [];
     }
 
-    addBook(value: Book) {
-        this.books.push(value)
+    addBook(book) {
+        this.books.push(book);
     }
 
-
-    removeBook(title: string) {
-        this.books = this.books.filter(item => item.getInfo() !== title)
+    removeBook(title) {
+        this.books = this.books.filter(book => book.title !== title);
     }
-    listBooks() {
-
-    }
-
 }
 /* 
 Класс Library:

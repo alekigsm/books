@@ -1,17 +1,14 @@
 export class Book {
-    protected title: string;
-    protected author: string;
-    protected year: number
-    constructor(author: string, title: string, year: number) {
-        this.author = author;
+    constructor(title, author, year) {
         this.title = title;
-        this.year = year
+        this.author = author;
+        this.year = year;
     }
-    getInfo() {
-        return `Название: ${this.title}, Автор: ${this.author}, Год: ${this.year}`
-    };
-}
 
+    getInfo() {
+        return `Название: ${this.title}, Автор: ${this.author}, Год: ${this.year}`;
+    }
+}
 /* 
 Что нужно сделать:
 Класс Book:
