@@ -34,15 +34,16 @@ addBookBtn.addEventListener('click', () => {
     console.log(`book, ${book.title, book.author, book.year}`);
 
     myLibrary.addBook(book)
-});
+    console.log(`теперь тут есть книга автора ${myLibrary.books.author.value}`)
 
+});
+//console.log(`тоже но методом ${book.getInfo()}`)
 removeBookBtn.addEventListener('click', () => {
     myLibrary.books.forEach(element => {
-        console.log(`список до ${myLibrary[element]}`)
+        console.log(`список до ${element.title}`)
     });
     const remBook = removeTitleInput.value;
     myLibrary.removeBook(remBook);
-    myLibrary.books.forEach(element => {
-        console.log(`список после ${myLibrary[element]}`)
-    });
+
 })
+
