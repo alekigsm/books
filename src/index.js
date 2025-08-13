@@ -40,14 +40,15 @@ addBookBtn.addEventListener('click', () => {
     const bookElement = bookTemplate.querySelector('.book-item').cloneNode(true);
     bookElement.querySelector('.book-info').textContent = title
     booksList.appendChild(bookElement);
-
-    console.log(`список книг ДО ${myLibrary.listBooks(booksList)}`)
+    const list = myLibrary.listBooks()
+    console.log(`список книг ДО ${list.map(book => book.getInfo())}`)
 });
 
 removeBookBtn.addEventListener('click', () => {
     const remBook = removeTitleInput.value;
     myLibrary.removeBook(remBook)
-    console.log(`список книг ПОСЛЕ${myLibrary.listBooks()}`)
+    const list = myLibrary.listBooks()
+    console.log(`список книг ПОСЛЕ ${list.map(book => book.getInfo())}`)
 
 
 
