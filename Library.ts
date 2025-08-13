@@ -1,19 +1,19 @@
 import { Book } from "./Book"
 
-class Liberty {
+export class Liberty {
     protected books: Book[]
-    constructor() {
-        const container = document.getElementById('books-container') as HTMLElement;
-        const bookеTemplate = document.getElementById('book-template') as HTMLElement;
 
+    constructor() {
+        this.books = [];
     }
+
     addBook(value: Book) {
         this.books.push(value)
     }
 
 
     removeBook(title: string) {
-        this.books = this.books.filter(item => item.getInfo() == title)
+        this.books = this.books.filter(item => item.getInfo() !== title)
     }
     listBooks() {
 
