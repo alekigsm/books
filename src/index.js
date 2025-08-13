@@ -37,12 +37,12 @@ addBookBtn.addEventListener('click', () => {
 });
 
 removeBookBtn.addEventListener('click', () => {
-    myLibrary.array.forEach(element => {
+    myLibrary.books.forEach(element => {
         console.log(`список до ${myLibrary[element]}`)
     });
     const remBook = removeTitleInput.value;
     myLibrary.removeBook(remBook);
-    myLibrary.array.forEach(element => {
+    myLibrary.books.forEach(element => {
         console.log(`список после ${myLibrary[element]}`)
     });
 })
