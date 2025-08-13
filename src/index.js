@@ -21,8 +21,28 @@ const removeBookBtn = document.getElementById('remove-book-btn');
 const booksList = document.getElementById('books-list');
 const bookTemplate = document.getElementById('book-template');
 
-
+let book = new Book()
 addBookBtn.addEventListener('click', () => {
-    const title = titleInput.value
-    console.log(`title, ${title}`)
+
+    const title = titleInput.value;
+    const author = authorInput.value;
+    const year = yearInput.value;
+    console.log(`title, ${title}`);
+    console.log(`author, ${author}`);
+    console.log(`year, ${year}`);
+    book = (title, author, year);
+    console.log(`book, ${book.title, book.author, book.year}`);
+
+    myLibrary.addBook(book)
 });
+
+removeBookBtn.addEventListener('click', () => {
+    myLibrary.array.forEach(element => {
+        console.log(`список до ${myLibrary[element]}`)
+    });
+    const remBook = removeTitleInput.value;
+    myLibrary.removeBook(remBook);
+    myLibrary.array.forEach(element => {
+        console.log(`список после ${myLibrary[element]}`)
+    });
+})
