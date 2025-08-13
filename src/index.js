@@ -1,3 +1,4 @@
+import { cloneNode } from "domhandler";
 import { Book } from "./Book.js";
 import { Library } from './Library.js';
 
@@ -18,10 +19,11 @@ const yearInput = document.getElementById('year-input');
 const addBookBtn = document.getElementById('add-book-btn');
 const removeTitleInput = document.getElementById('remove-title-input');
 const removeBookBtn = document.getElementById('remove-book-btn');
-const booksList = document.getElementById('books-list');
-const bookTemplate = document.getElementById('book-template');
 
-let book = new Book()
+const booksList = document.getElementById('books-list');
+const bookTemplate = document.getElementById('book-template').content;
+
+
 addBookBtn.addEventListener('click', () => {
 
     const title = titleInput.value;
@@ -30,20 +32,24 @@ addBookBtn.addEventListener('click', () => {
     console.log(`title, ${title}`);
     console.log(`author, ${author}`);
     console.log(`year, ${year}`);
-    book = (title, author, year);
-    console.log(`book, ${book.title, book.author, book.year}`);
-
+    const book = new Book(title, author, year);
+    console.log(`book: ${book.title} author: ${book.author} year: ${book.year}`);
     myLibrary.addBook(book)
-    console.log(`теперь тут есть книга автора ${myLibrary.books.author.value}`)
+    console.log(`тоже через метод ${book.getInfo()}`);
 
+    const bookElement = bookTemplate.querySelector('.book-item').cloneNode(true);
+    bookElement.querySelector('.book-info').textContent = title
+    booksList.appendChild(bookElement);
+
+    console.log(`список книг ДО ${myLibrary.listBooks(booksList)}`)
 });
-//console.log(`тоже но методом ${book.getInfo()}`)
+
 removeBookBtn.addEventListener('click', () => {
-    myLibrary.books.forEach(element => {
-        console.log(`список до ${element.title}`)
-    });
     const remBook = removeTitleInput.value;
-    myLibrary.removeBook(remBook);
+    myLibrary.removeBook(remBook)
+    console.log(`список книг ПОСЛЕ${myLibrary.listBooks()}`)
+
+
 
 })
 

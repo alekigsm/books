@@ -11,7 +11,7 @@ export class Library {
         this.books = this.books.filter(book => book.title !== title);
     }
     listBooks() {
-
+        return this.books
     }
 }
 /* 
