@@ -55,20 +55,22 @@ function renderAll(books) {
 
 addBookBtn.addEventListener('click', () => {
     const title = titleInput.value;
+
     const author = authorInput.value;
+
     const year = yearInput.value;
+
     const book = new Book(title, author, year);
     myLibrary.addBook(book)
-    const bookEl = elementView.render(book)
-    booksList.appendChild(bookEl)
+    const bookElement = elementView.render(book)
+    booksList.appendChild(bookElement)
 });
 
 
 removeBookBtn.addEventListener('click', () => {
     const remBook = removeTitleInput.value;
     myLibrary.removeBook(remBook)
+    const bookElement = elementView.render(myLibrary.listBooks)
     const list = myLibrary.listBooks()
     console.log(`список книг ПОСЛЕ ${list.map(book => book.getInfo())}`)
-    renderAll(myLibrary.listBooks())
 })
-
