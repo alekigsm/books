@@ -1,12 +1,15 @@
+import { data } from "autoprefixer";
+
 export class Book {
     constructor(title, author, year) {
         this.title = title;
         this.author = author;
         this.year = year;
+        this.id = Date.now()
     }
 
     getInfo() {
-        return `Название: ${this.title}, Автор: ${this.author}, Год: ${this.year}`;
+        return `Название: ${this.title}, Автор: ${this.author}, Год: ${this.year}, id: ${this.id}`;
     }
 }
 /* 

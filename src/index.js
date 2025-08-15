@@ -1,7 +1,7 @@
 import { cloneNode } from "domhandler";
 import { Book } from "./Book.js";
 import { Library } from './Library.js';
-
+import './style.css';
 /* Интерфейс пользователя:
 Кнопка "Добавить книгу" должна создавать объект класса Book и добавлять его в библиотеку.
 Кнопка "Показать все книги" должна вызывать метод listBooks() и отображать список книг на странице.
@@ -23,9 +23,28 @@ const removeBookBtn = document.getElementById('remove-book-btn');
 const booksList = document.getElementById('books-list');
 const bookTemplate = document.getElementById('book-template').content;
 
+function renderAll(books) {
+    booksList.innerHTML = '';
+
+    books.forEach(book => {
+
+
+        const bookElement = bookTemplate.querySelector('.book-item').cloneNode(true);
+        bookElement.querySelector('.book-info').textContent =
+            `${book.title}; ${book.author}; ${book.year}; ${book.id}`;
+        const removeBookButton = bookElement.querySelector('.remove-book-button');
+
+
+        removeBookButton.addEventListener('click', () => {
+            myLibrary.removeBookId(book.id)
+            renderAll(myLibrary.listBooks())
+        })
+        booksList.append(bookElement);
+    })
+
+}
 
 addBookBtn.addEventListener('click', () => {
-
     const title = titleInput.value;
     const author = authorInput.value;
     const year = yearInput.value;
@@ -33,24 +52,17 @@ addBookBtn.addEventListener('click', () => {
     console.log(`author, ${author}`);
     console.log(`year, ${year}`);
     const book = new Book(title, author, year);
-    console.log(`book: ${book.title} author: ${book.author} year: ${book.year}`);
     myLibrary.addBook(book)
-    console.log(`тоже через метод ${book.getInfo()}`);
+    renderAll(myLibrary.listBooks())
 
-    const bookElement = bookTemplate.querySelector('.book-item').cloneNode(true);
-    bookElement.querySelector('.book-info').textContent = title
-    booksList.appendChild(bookElement);
-    const list = myLibrary.listBooks()
-    console.log(`список книг ДО ${list.map(book => book.getInfo())}`)
 });
+
 
 removeBookBtn.addEventListener('click', () => {
     const remBook = removeTitleInput.value;
     myLibrary.removeBook(remBook)
     const list = myLibrary.listBooks()
     console.log(`список книг ПОСЛЕ ${list.map(book => book.getInfo())}`)
-
-
-
+    renderAll(myLibrary.listBooks())
 })
 

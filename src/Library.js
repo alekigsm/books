@@ -10,6 +10,9 @@ export class Library {
     removeBook(title) {
         this.books = this.books.filter(book => book.title !== title);
     }
+    removeBookId(id) {
+        this.books = this.books.filter(book => book.id !== id);
+    }
     listBooks() {
         return this.books
     }
