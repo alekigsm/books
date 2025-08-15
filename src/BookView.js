@@ -1,14 +1,20 @@
 /* Создать класс BookView который отвечает за рендер разметки одно книги. 
 В конструктор принимает клон темплейта.
  Содержит метод render() который принимает данные книги и возвращает разметку одной книги */
-
 export class BookView {
-    protected container: HTMLTemplateElement;
-    constructor(container: HTMLTemplateElement) {
-        this.container = container
+
+    constructor(template) {
+
+        this.template = template;
+
     }
 
-    render() {
+    render(bookData) {
+        const bookElement = this.template.content.cloneNode(true);
 
+        const bookInfo = bookElement.querySelector('.book-info');
+        bookInfo.textContent = `${bookData.title}, ${bookData.author}, ${bookData.year}`;
+
+        return bookElement;
     }
 }

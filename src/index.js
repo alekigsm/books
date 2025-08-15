@@ -2,6 +2,7 @@ import { cloneNode } from "domhandler";
 import { Book } from "./Book.js";
 import { Library } from './Library.js';
 import './style.css';
+import { BookView } from "./BookView.js";
 /* Интерфейс пользователя:
 Кнопка "Добавить книгу" должна создавать объект класса Book и добавлять его в библиотеку.
 Кнопка "Показать все книги" должна вызывать метод listBooks() и отображать список книг на странице.
@@ -21,28 +22,36 @@ const removeTitleInput = document.getElementById('remove-title-input');
 const removeBookBtn = document.getElementById('remove-book-btn');
 
 const booksList = document.getElementById('books-list');
-const bookTemplate = document.getElementById('book-template').content;
+const bookTemplate = document.getElementById('book-template');
 
+const elementView = new BookView(bookTemplate)
+const book = {
+    title: 'JavaScript: The Good Parts',
+    author: 'Douglas Crockford',
+    year: '2008'
+};
+const bookEl = elementView.render(book)
+booksList.appendChild(bookEl)
+/* 
 function renderAll(books) {
     booksList.innerHTML = '';
-
+ 
     books.forEach(book => {
-
-
+ 
+ 
         const bookElement = bookTemplate.querySelector('.book-item').cloneNode(true);
         bookElement.querySelector('.book-info').textContent =
             `${book.title}; ${book.author}; ${book.year}; ${book.id}`;
         const removeBookButton = bookElement.querySelector('.remove-book-button');
-
-
+ 
+        booksList.append(bookElement);
         removeBookButton.addEventListener('click', () => {
             myLibrary.removeBookId(book.id)
             renderAll(myLibrary.listBooks())
         })
-        booksList.append(bookElement);
     })
-
-}
+ 
+} */
 
 addBookBtn.addEventListener('click', () => {
     const title = titleInput.value;
