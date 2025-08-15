@@ -28,7 +28,8 @@ const elementView = new BookView(bookTemplate)
 const book = {
     title: 'JavaScript: The Good Parts',
     author: 'Douglas Crockford',
-    year: '2008'
+    year: '2008',
+    id: 2226
 };
 const bookEl = elementView.render(book)
 booksList.appendChild(bookEl)
