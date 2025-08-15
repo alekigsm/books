@@ -25,14 +25,13 @@ const booksList = document.getElementById('books-list');
 const bookTemplate = document.getElementById('book-template');
 
 const elementView = new BookView(bookTemplate)
-const book = {
+/* const book = {
     title: 'JavaScript: The Good Parts',
     author: 'Douglas Crockford',
     year: '2008',
     id: 2226
-};
-const bookEl = elementView.render(book)
-booksList.appendChild(bookEl)
+}; */
+
 /* 
 function renderAll(books) {
     booksList.innerHTML = '';
@@ -58,13 +57,10 @@ addBookBtn.addEventListener('click', () => {
     const title = titleInput.value;
     const author = authorInput.value;
     const year = yearInput.value;
-    console.log(`title, ${title}`);
-    console.log(`author, ${author}`);
-    console.log(`year, ${year}`);
     const book = new Book(title, author, year);
     myLibrary.addBook(book)
-    renderAll(myLibrary.listBooks())
-
+    const bookEl = elementView.render(book)
+    booksList.appendChild(bookEl)
 });
 
 
