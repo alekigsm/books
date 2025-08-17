@@ -3,21 +3,26 @@
  Содержит метод render() который принимает данные книги и возвращает разметку одной книги */
 export class BookView {
 
-    constructor(template) {
+  constructor(container) {
+    this.container = container;
+    this.textElement = this.container.querySelector('.book-info');
+    this.buttonElement = this.container.querySelector('.remove-book-button');
+    this.buttonElement.addEventListener('click', () => {
+      this.container.remove();
+      // this.setText('Я буду удален');
+    })
+  }
 
-        this.template = template;
+  setText(bookData) {
+    this.textElement.textContent = bookData;
+    return this.container;
+  }
 
-    }
-
-    render(bookData) {
-        const bookElement = this.template.content.cloneNode(true);
-        // const removeBookButton = bookElement.querySelector('.remove-book-button');
-        const bookInfo = bookElement.querySelector('.book-info');
-        bookInfo.textContent = `${bookData.title}, ${bookData.author}, ${bookData.year}, ${bookData.id}`;
-
-        /* removeBookButton.addEventListener('click', () => {
-            removeBookId(book.id)
-        }) */
-        return bookElement;
-    }
+  /*  getElement() {
+     return this.container;
+   }
+ 
+   setRed() {
+     this.textElement.style.color = 'red';
+   } */
 }
