@@ -8,33 +8,39 @@
  В нем нужно обрабатывать нажатия кнопок и рендерить список. */
 
 import { Book } from "./Book"
+import { BookView } from "./BookView"
+import { Library } from "./Library"
 
 export class PageView {
 
     constructor(container) {
         this.container = container
-        this.inputFormTitle = this.container.querySelector('.title-input')
-        this.inputFormAuthor = this.container.querySelector('.author-input')
-        this.inputFormYear = this.container.querySelector('.year-input')
-        this.buttonAddElement = this.container.querySelector('.add-book-btn')
-        this.textElement = this.container.querySelector('.books-list')
-        this.buttonRemElement = this.container.querySelector('.remove-book-btn')
-        this.inputTextElement = this.container.querySelector('.remove-title-input')
+        this.inputFormTitle = this.container.querySelector('#title-input')
+        this.inputFormAuthor = this.container.querySelector('#author-input')
+        this.inputFormYear = this.container.querySelector('#year-input')
+        this.buttonAddElement = this.container.querySelector('#add-book-btn')
+        this.textElement = this.container.querySelector('#books-list')
+        this.buttonRemElement = this.container.querySelector('#remove-book-btn')
+        this.inputTextElement = this.container.querySelector('#remove-title-input')
+        const myLibrary = new Library();
 
         this.buttonAddElement.addEventListener('click', () => {
-            // const title = this.inputFormTitle;
-            // const author = this.inputFormAuthor;
-            // const year = this.inputFormYear;
+            const title = this.inputFormTitle;
+            const author = this.inputFormAuthor;
+            const year = this.inputFormYear;
 
-            // const book = new Book(title, author, year);
+            const book = new Book(title, author, year);
 
             console.log('tyt')
-            // myLibrary.addBook(book)
-            /*     
+            myLibrary.addBook(book)
+
             const bookInstant = new BookView(bookTemplate.content.querySelector('.book-item').cloneNode(true))
-                bookForName = bookInstant;
-            //     booksList.appendChild(bookInstant.setText(book.getInfo())) */
-            // renderBookArray()
+            booksList.appendChild(bookInstant.setText(book.getInfo()))
+            renderBookArray()
+        })
+
+        this.buttonRemElement.addEventListener('click', () => {
+
         })
     }
 }

@@ -20,7 +20,7 @@ import { PageView } from "./PageView.js";
 
 
 // Создаем экземпляр библиотеки
-const myLibrary = new Library();
+//const myLibrary = new Library();
 
 // Получаем элементы DOM
 const titleInput = document.getElementById('title-input');
@@ -38,7 +38,7 @@ const pageTemplate = document.getElementById('library-app');
 const body = document.body;
 const pageView = new PageView(pageTemplate)
 body.classList.add('lol')
-body.append(pageView)
+
 
 
 //const elementView = new BookView(bookTemplate.content.querySelector('.book-item').cloneNode(true))
