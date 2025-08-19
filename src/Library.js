@@ -8,6 +8,7 @@ export class Library {
     }
 
     removeBook(title) {
+        console.log('title', title)
         this.books = this.books.filter(book => book.title !== title);
     }
     removeBookId(id) {

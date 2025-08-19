@@ -7,41 +7,36 @@
 5. Создать класс Вью отвечающий за страницу.
  В нем нужно обрабатывать нажатия кнопок и рендерить список. */
 
-import { Book } from "./Book"
-import { BookView } from "./BookView"
-import { Library } from "./Library"
-
 export class PageView {
 
-    constructor(container) {
+    constructor(container, action) {
         this.container = container
         this.inputFormTitle = this.container.querySelector('#title-input')
         this.inputFormAuthor = this.container.querySelector('#author-input')
         this.inputFormYear = this.container.querySelector('#year-input')
         this.buttonAddElement = this.container.querySelector('#add-book-btn')
-        this.textElement = this.container.querySelector('#books-list')
+        this.booksList = this.container.querySelector('#books-list')
         this.buttonRemElement = this.container.querySelector('#remove-book-btn')
         this.inputTextElement = this.container.querySelector('#remove-title-input')
-        const myLibrary = new Library();
 
         this.buttonAddElement.addEventListener('click', () => {
-            const title = this.inputFormTitle;
-            const author = this.inputFormAuthor;
-            const year = this.inputFormYear;
+            const title = this.inputFormTitle.value;
+            const author = this.inputFormAuthor.value;
+            const year = this.inputFormYear.value;
 
-            const book = new Book(title, author, year);
-
-            console.log('tyt')
-            myLibrary.addBook(book)
-
-            const bookInstant = new BookView(bookTemplate.content.querySelector('.book-item').cloneNode(true))
-            booksList.appendChild(bookInstant.setText(book.getInfo()))
-            renderBookArray()
+            action.onAddBook(title, author, year);
         })
 
         this.buttonRemElement.addEventListener('click', () => {
-
+            const title = this.inputTextElement.value;
+            action.onDelBook(title)
         })
+    }
+
+    setBooks(booksHTMLArray) {
+        this.booksList.innerHTML = '';
+        this.booksList.append(...booksHTMLArray)
+
     }
 }
 

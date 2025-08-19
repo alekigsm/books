@@ -33,41 +33,57 @@ const removeBookBtn = document.getElementById('remove-book-btn');
 const booksList = document.getElementById('books-list');
 const bookTemplate = document.getElementById('book-template');
 
-const pageTemplate = document.getElementById('library-app');
+const pageContainer = document.getElementById('library-app');
 
-const body = document.body;
-const pageView = new PageView(pageTemplate)
-body.classList.add('lol')
+// const body = document.body;
+// body.classList.add('lol')
 
-
+const myLibrary = new Library();
 
 //const elementView = new BookView(bookTemplate.content.querySelector('.book-item').cloneNode(true))
 
 
-/*
-function renderAll(books) {
-    booksList.innerHTML = '';
 
-    books.forEach(book => {
+function renderAll() {
 
+    const booksArray = myLibrary.listBooks();
 
-        const bookElement = bookTemplate.querySelector('.book-item').cloneNode(true);
-        bookElement.querySelector('.book-info').textContent =
-            `${book.title}; ${book.author}; ${book.year}; ${book.id}`;
-        const removeBookButton = bookElement.querySelector('.remove-book-button');
-
-        booksList.append(bookElement);
-        removeBookButton.addEventListener('click', () => {
-            myLibrary.removeBookId(book.id)
-            renderAll(myLibrary.listBooks())
-        })
+    const booksHTMLArray = booksArray.map(book => {
+        const bookInstant = new BookView(bookTemplate.content.querySelector('.book-item').cloneNode(true))
+        return (bookInstant.setText(book.getInfo()))
     })
 
-} */
+    pageView.setBooks(booksHTMLArray)
+
+}
 
 
 
-// addBookBtn.addEventListener('click', () => {
+const addBook = (title, author, year) => {
+    myLibrary.addBook(new Book(title, author, year));
+    renderAll()
+}
+
+const delBook = (title) => {
+    console.log('tyt')
+
+    console.log(myLibrary.listBooks())
+    myLibrary.removeBook(title)
+    console.log('tyt2')
+    console.log(myLibrary.listBooks())
+    renderAll()
+    console.log('tyt3')
+}
+
+
+const action = {
+    onAddBook: addBook,
+    onDelBook: delBook
+}
+
+const pageView = new PageView(pageContainer, action)
+
+
 //     const title = titleInput.value;
 //     const author = authorInput.value;
 //     const year = yearInput.value;
